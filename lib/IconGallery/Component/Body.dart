@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:test1/IconGallery/Component/BaseWidget.dart';
 import 'package:test1/IconGallery/Component/TypeImage.dart';
 import 'package:test1/IconGallery/GalleryController.dart';

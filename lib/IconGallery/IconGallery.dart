@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:path/path.dart' as p;
 import 'package:test1/IconGallery/Component/Body.dart';
 import 'package:test1/IconGallery/Component/Header.dart';
 import 'package:test1/IconGallery/GalleryController.dart';
 import 'package:test1/IconGallery/GalleryValue.dart';
-
 import 'Component/BaseWidget.dart';
 import 'Component/TypeImage.dart';
 import 'TypeImageImport.dart';
