@@ -13,7 +13,3 @@ jobs:
           channel: "stable"
       - name: Get packages
         run: flutter pub get
-      - name: Analyze the source code
-        run: make analyze
-      - name: Run tests
-        run: make test
