@@ -11,7 +11,6 @@ import 'package:test1/IconGallery/TypeImageImport.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
-
 void main() async {
   await ScreenUtil.ensureScreenSize();
   runApp(const MyApp());
@@ -33,7 +32,6 @@ class MyApp extends StatelessWidget {
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
-
 }
 
 class MyHomePage extends StatefulWidget {
@@ -46,8 +44,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-
   Future<Uint8List> convert(String path) async {
     final ByteData bytes = await rootBundle.load(path);
     final Uint8List list = bytes.buffer.asUint8List();
@@ -58,11 +54,12 @@ class _MyHomePageState extends State<MyHomePage> {
     final ByteData bytes = await rootBundle.load(path);
     final file = File('${(await getTemporaryDirectory()).path}/$path');
     await file.create(recursive: true);
-    await file.writeAsBytes(bytes.buffer.asUint8List(bytes.offsetInBytes,bytes.lengthInBytes));
+    await file.writeAsBytes(
+        bytes.buffer.asUint8List(bytes.offsetInBytes, bytes.lengthInBytes));
     return file;
   }
 
-  late Map<TypeImageImport,List> Data;
+  late Map<TypeImageImport, List> Data;
 
   Widget? _widget = null;
 
@@ -70,15 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
 
   late WidgetsBinding _widgetsBinding;
 
-  initState(){
+  initState() {
     _widgetsBinding = WidgetsBinding.instance;
-    galleryController = GalleryController(GalleryValue(SelectedHeader: '',SelectedImg: ''));
+    galleryController =
+        GalleryController(GalleryValue(SelectedHeader: '', SelectedImg: ''));
     super.initState();
 
     _widgetsBinding.addPostFrameCallback((timeStamp) async {
-
       Data = {
-        TypeImageImport.png : [
+        TypeImageImport.png: [
           'assets/png/c0.png',
           await convert('assets/png/c1.png'),
           'assets/png/c2.png',
@@ -94,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
           'assets/png/c12.png',
           'assets/png/c13.png',
         ],
-        TypeImageImport.iconData : [
+        TypeImageImport.iconData: [
           Icons.add_alert_outlined,
           MdiIcons.accountChild,
           MdiIcons.accountCog,
@@ -103,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
           MdiIcons.accountHeart,
           Icons.account_balance,
         ],
-        TypeImageImport.jpg : [
+        TypeImageImport.jpg: [
           'assets/jpg/c42.jpg',
           'assets/jpg/c43.jpg',
           'assets/jpg/c44.jpg',
@@ -119,7 +116,7 @@ class _MyHomePageState extends State<MyHomePage> {
           'assets/jpg/c54.jpg',
           'assets/jpg/c55.jpg',
         ],
-        TypeImageImport.ico : [
+        TypeImageImport.ico: [
           'assets/ico/c100.ico',
           'assets/ico/c101.ico',
           'assets/ico/c102.ico',
@@ -129,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
           'assets/ico/c106.ico',
           'assets/ico/c107.ico',
         ],
-        TypeImageImport.svg : [
+        TypeImageImport.svg: [
           'assets/svg/c80.svg',
           'assets/svg/c81.svg',
           'assets/svg/c82.svg',
@@ -138,13 +135,10 @@ class _MyHomePageState extends State<MyHomePage> {
           'assets/svg/c85.svg',
         ]
       };
-
     });
-
   }
 
-  Future<Widget?> showMessageBoxCategory(context,child) async {
-
+  Future<Widget?> showMessageBoxCategory(context, child) async {
     AlertDialog alertDialog = AlertDialog(
       backgroundColor: Colors.transparent,
       alignment: Alignment.center,
@@ -158,18 +152,14 @@ class _MyHomePageState extends State<MyHomePage> {
         context: context,
         barrierDismissible: true,
         useSafeArea: true,
-        builder: (context){
+        builder: (context) {
           double _bottom = MediaQuery.of(context).viewInsets.bottom;
           return Padding(
             padding: EdgeInsets.symmetric(
-                vertical: (_bottom>0.0) ? 20.h : 50.h,
-                horizontal: 0.1.sw
-            ),
+                vertical: (_bottom > 0.0) ? 20.h : 50.h, horizontal: 0.1.sw),
             child: alertDialog,
           );
-        }
-    );
-
+        });
   }
 
   @override
@@ -179,10 +169,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: ElevatedButton(
             onPressed: () async {
-              _widget = await showMessageBoxCategory(context, IconGallery(Data: Data,galleryController: galleryController));
-              setState(() {
-
-              });
+              _widget = await showMessageBoxCategory(
+                  context,
+                  IconGallery(
+                      Data: Data, galleryController: galleryController));
+              setState(() {});
             },
             child: Row(
               mainAxisSize: MainAxisSize.min,
@@ -191,21 +182,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 Text('Icone Select'),
                 SizedBox(width: 8),
                 Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 8
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 8),
                   child: SizedBox(
-                    width: 40,height: 40,
+                    width: 40,
+                    height: 40,
                     child: FittedBox(child: _widget),
                   ),
                 )
               ],
-            )
-        ),
+            )),
       ),
     );
   }
-
-
-
 }

@@ -1,5 +1,4 @@
-
-enum TypeImageImport{
+enum TypeImageImport {
   svg,
   iconData,
   jpg,

@@ -1,6 +1,1 @@
-
-enum TypeImage {
-  svg,
-  iconData,
-  any
-}
+enum TypeImage { svg, iconData, any }
