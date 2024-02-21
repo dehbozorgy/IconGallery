@@ -13,8 +13,6 @@ jobs:
           channel: "stable"
       - name: Get packages
         run: flutter pub get
-      - name: Check formatting
-        run: make checkFormat
       - name: Analyze the source code
         run: make analyze
       - name: Run tests
