@@ -15,3 +15,5 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
       - name: Analyze the source code
         run: dart analyze
+      - name: Run tests
+        run: flutter test
